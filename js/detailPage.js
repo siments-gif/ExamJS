@@ -1,4 +1,4 @@
-import { fetchPokemonDetails } from "./apiFetch.js";
+import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
 
 async function displayPokemonDetails() {
     try {

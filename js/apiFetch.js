@@ -15,21 +15,21 @@ export async function fetchBaseData (endpoint) {
 
 export async function fetchPokemonDetails(pokemonId) {
     try {
-        const res = await fetch(`${baseUrl}/pokemon/${pokemonId}`);
+        const res = await fetch(`${baseUrl}/pokemon/${pokemonId}`); // Fetching new response from API
         if (!res.ok) {
-            throw new Error('Failed to fetch Pokémon details');
+            throw new Error('Network error for fetched data not ok');
         }
         const data = await res.json();
-        // Extract the relevant details from the response
-        const pokemon = {
+        // Takes specific details from the response
+        const pokemonDetails = {
             name: data.name,
             species: data.species.name,
-            types: data.types.map(type => type.type.name),
-            abilities: data.abilities.map(ability => ability.ability.name)
-            // Add more details as needed
+            types: data.types.map(type => type.type.name), // Maps pokemon types
+            abilities: data.abilities.map(ability => ability.ability.name) // Maps pokemon abilities
+            // Add more specific i want from response
         };
-        return pokemon;
+        return pokemonDetails;
     } catch (error) {
-        throw new Error(`Failed to fetch Pokémon details: ${error.message}`);
+        throw new Error(`Failed to fetch Pokémon details: ${error}`);
     }
 }
