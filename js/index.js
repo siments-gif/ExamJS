@@ -1,4 +1,4 @@
-import {fetchData} from "./apiFetch.js";
+import {fetchBaseData} from "./apiFetch.js";
 
 // Creating elements for page with DOM-manipulation
 const title = document.createElement('h1');
@@ -16,9 +16,11 @@ const container = document.createElement("div")
     document.body.appendChild(container);
 
 // Creating styling to elements with DOM-manipulation
+document.body.style.margin = "3rem"
+
 let listStyle = document.getElementById("pokemonList");
     listStyle.style.display = "grid";
-    listStyle.style.gap = "2rem"
+    listStyle.style.gap = "5rem"
     listStyle.style.gridTemplateColumns = "repeat(3, 1fr)"
     listStyle.style.listStyle = "none"
 
@@ -26,21 +28,29 @@ let listStyle = document.getElementById("pokemonList");
 async function createPokemonList(endpoint, listSize) {
 
     for (let id = 1; id <= listSize; id++) {
-        const data = await fetchData(`${endpoint}/${id}`);
+        const data = await fetchBaseData(`${endpoint}/${id}`);
         if (data) {
             const listItem = document.createElement("li");
-            listItem.innerHTML = `${data.name}`;
+            listItem.innerHTML = `<h2>${data.name}</h2>`;
+            listItem.style.display = "flex";
+            listItem.style.gap = "1rem"
+            listItem.style.flexDirection = "column";
+            listItem.style.textAlign = "center"
 
             const button = document.createElement("button");
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
 
-            button.addEventListener ("click", async () => {
-                location.href = "../detailPage.html"
-            })
+            button.addEventListener ("click", () => {
+                location.href = `../detailPage.html?id=${id}`
+            });
+
+            listItem.appendChild(button);
+
             pokemonList.appendChild(listItem);
+
         } else {
-            console.log(`Failed to fetch details about pokemon ${id}`)
+            console.log(`Failed to display fetch details about pokemon ${id}`)
         }
     }
 }
