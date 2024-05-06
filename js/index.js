@@ -1,4 +1,4 @@
-import {fetchBaseData} from "./apiFetch.js";
+import { fetchBaseData } from "./apiFetch.js";
 
 // Creating elements for page with DOM-manipulation
 const title = document.createElement('h1');
@@ -41,8 +41,9 @@ async function createPokemonList(endpoint, listSize) {
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
 
-            button.addEventListener ("click", () => {
-                location.href = `../detailPage.html?id=${id}`
+            button.addEventListener ("click", (event) => {
+                const pokemonId = event.target.dataset.id;
+                location.href = `../detailPage.html?id=${pokemonId}`
             });
 
             listItem.appendChild(button);
