@@ -4,7 +4,7 @@ import {fetchData} from "./apiFetch.js";
 const title = document.createElement('h1');
     title.textContent = "Pokemon List";
     title.style.textAlign = "center";
-    document.body.appendChild(title); 
+    document.body.appendChild(title); // Making body the parent element
 
 const pokemonList = document.createElement("ul");
     pokemonList.id = "pokemonList";
