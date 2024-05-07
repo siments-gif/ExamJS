@@ -23,7 +23,7 @@ let listStyle = document.getElementById("pokemonList");
     listStyle.style.gap = "5rem"
     listStyle.style.gridTemplateColumns = "repeat(3, 1fr)"
     listStyle.style.listStyle = "none"
-
+        
 // Creates a list with pokemons from API
 async function createPokemonList(endpoint, listSize) {
 
@@ -31,7 +31,12 @@ async function createPokemonList(endpoint, listSize) {
         const data = await fetchBaseData(`${endpoint}/${id}`);
         if (data) {
             const listItem = document.createElement("li");
-            listItem.innerHTML = `<h2>${data.name}</h2>`;
+            listItem.innerHTML = `
+                <h2>${data.name}</h2>
+                <img src="${data.sprites.front_default}"></img>
+            `;
+
+
             listItem.style.display = "flex";
             listItem.style.gap = "1rem"
             listItem.style.flexDirection = "column";

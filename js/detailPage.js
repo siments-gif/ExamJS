@@ -17,13 +17,13 @@ async function displayPokemonDetails() {
         };
 
         const symbolForTypes = pokemon.types.map(type => symbols[type] || type);
-        const combinedTypes = symbolForTypes + pokemon.types;
 
         const specificPokemonContainer = document.getElementById('pokemonDetails');
         specificPokemonContainer.innerHTML = `
-            <h2>Name: ${pokemon.name}</h2>
+            <h2>${pokemon.name}</h2>
+            <img src="${pokemon.image}"></img>
             <p>Species: ${pokemon.species}</p>
-            <p>Types: ${combinedTypes}</p>
+            <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p>
             <p>Abilities: ${pokemon.abilities.join(', ')}</p>
             `;
     } catch (error) {
