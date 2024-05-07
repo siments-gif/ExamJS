@@ -1,6 +1,14 @@
 import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
 
-const pokemonCard = document.getElementById('pokemonDetails');
+const pageTitle = document.createElement("h1")
+pageTitle.textContent = "Pokemon Details"
+pageTitle.style.textAlign = "center";
+document.body.appendChild(pageTitle)
+
+const pokemonCard = document.createElement("div")
+pokemonCard.id = "pokemonDetails"
+document.body.appendChild(pokemonCard)
+
 
 const symbols = {
             "light": "🌟",
@@ -25,6 +33,10 @@ async function displayPokemonDetails() {
             <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p>
             <p>Abilities: ${pokemon.abilities.join(', ')}</p>
             `;
+        pokemonCard.style.display = "flex";
+        pokemonCard.style.flexDirection = "column"
+        pokemonCard.style.alignItems = "center"
+        pokemonCard.style.justifyContent = "center"
     } catch (error) {
         console.error("Didn't display any pokemon details on page", error);
     }
