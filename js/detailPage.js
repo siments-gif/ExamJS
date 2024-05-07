@@ -1,13 +1,8 @@
 import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
 
-async function displayPokemonDetails() {
-    try {
-        const urlParams = new URLSearchParams(window.location.search)
-        const pokemonId = urlParams.get("id");
-        
-        const pokemon = await fetchPokemonDetails(pokemonId);
+const pokemonCard = document.getElementById('pokemonDetails');
 
-        const symbols = {
+const symbols = {
             "light": "🌟",
             "fire": "🔥",
             "water": "💧",
@@ -15,11 +10,15 @@ async function displayPokemonDetails() {
             "grass": "🌿",
             "poison": "☢"
         };
+async function displayPokemonDetails() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search)
+        const pokemonId = urlParams.get("id");
+        
+        const pokemon = await fetchPokemonDetails(pokemonId);
+        const symbolForTypes = pokemon.types.map(type => symbols[type]);
 
-        const symbolForTypes = pokemon.types.map(type => symbols[type] || type);
-
-        const specificPokemonContainer = document.getElementById('pokemonDetails');
-        specificPokemonContainer.innerHTML = `
+        pokemonCard.innerHTML = `
             <h2>${pokemon.name}</h2>
             <img src="${pokemon.image}"></img>
             <p>Species: ${pokemon.species}</p>

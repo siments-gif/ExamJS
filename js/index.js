@@ -16,11 +16,11 @@ const container = document.createElement("div")
     document.body.appendChild(container);
 
 // Creating styling to elements with DOM-manipulation
-document.body.style.margin = "3rem"
 
 let listStyle = document.getElementById("pokemonList");
     listStyle.style.display = "grid";
-    listStyle.style.gap = "5rem"
+    listStyle.style.margin = "2rem"
+    listStyle.style.gap = "4rem"
     listStyle.style.gridTemplateColumns = "repeat(3, 1fr)"
     listStyle.style.listStyle = "none"
         
@@ -38,7 +38,7 @@ async function createPokemonList(endpoint, listSize) {
 
 
             listItem.style.display = "flex";
-            listItem.style.gap = "1rem"
+            listItem.style.border = "1px solid black"
             listItem.style.flexDirection = "column";
             listItem.style.textAlign = "center"
 
