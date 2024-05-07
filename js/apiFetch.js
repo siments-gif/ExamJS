@@ -20,10 +20,13 @@ export async function fetchPokemonDetails(pokemonId) {
             throw new Error('Network error for fetched data not ok');
         }
         const data = await res.json();
+        const image = data.sprites && data.sprites.front_default;
+        
         // Takes specific details from the response
         const pokemonDetails = {
             name: data.name,
             species: data.species.name,
+            image: image || "Image not avaiable",
             types: data.types.map(type => type.type.name), // Maps pokemon types
             abilities: data.abilities.map(ability => ability.ability.name) // Maps pokemon abilities
             // Add more specific i want from response
