@@ -9,8 +9,30 @@ const pokemonCard = document.createElement("div")
 pokemonCard.id = "pokemonDetails"
 document.body.appendChild(pokemonCard)
 
+const saveBtn = document.createElement("button");
+saveBtn.id = "saveBtn";
+saveBtn.textContent = "Save"
+document.body.appendChild(saveBtn)
 
-const symbols = {
+const collectionBtn = document.createElement("button");
+collectionBtn.id = "collectionBtn";
+collectionBtn.textContent = "Go to collection";
+document.body.appendChild(collectionBtn);
+
+function styleButtons () {
+    const buttons = document.querySelectorAll("button")
+ buttons.forEach(button => {
+     button.style.display = "block"
+     button.style.width = "fit-content"
+     button.style.margin = "auto"
+     button.style.marginTop = "5px"
+
+     button.style.cursor = "pointer"
+     button.style.borderWidth = ".3rem"
+ }) 
+ }
+
+ const symbols = {
             "light": "🌟",
             "fire": "🔥",
             "water": "💧",
@@ -42,3 +64,4 @@ async function displayPokemonDetails() {
     }
 }
 displayPokemonDetails();
+styleButtons();
