@@ -43,11 +43,10 @@ async function displayPokemonDetails() {
                 <img src="${pokemon.backImage}"></img>
             </div>
             <p>Species: ${pokemon.species}</p>
-            <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p>
+            <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p> <!-- Adding and splitting by comma -->
             <p>Abilities: ${pokemon.abilities.join(', ')}</p>
             `;
-        pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling elements inside of innerhtml
-        pokemonCard.querySelector("#detailImages").style.gap = "1rem";
+        pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling image div inside of innerhtml
         pokemonCard.style.display = "flex";
         pokemonCard.style.flexDirection = "column"
         pokemonCard.style.alignItems = "center"
