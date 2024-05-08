@@ -9,19 +9,15 @@ headerNav.appendChild(navStructure);
 const navList = document.createElement("ul");
 navList.id = "navList"
 navList.innerHTML = `
-    <div>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../personalListPage.html">Personal Collection</a></li>
-    </div>
-    <div>
-        <li><a href="../index.html">Login</a></li>
-        <li><a href="../personalListPage.html">Register</a></li>
-    </div>
+    <li><a href="../index.html">Login</a></li>
+    <li><a href="../personalListPage.html">Register</a></li>
 `
 navList.style.display = "flex";
-navList.style.gap = "2rem"
-navList.style.listStyle = "none"
-navList.style.textDecoration = "none"
+navList.style.gap = "3rem";
+navList.style.listStyle = "none";
+navList.style.textDecoration = "none";
+navList.style.marginLeft = "2vw";
+navList.style.marginTop = "2vh"
 
 navStructure.appendChild(navList);
 
