@@ -1,4 +1,5 @@
 import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
+import { styleButtons, bodyStyle } from "./globalStyling.js";
 
 const pageTitle = document.createElement("h1")
 pageTitle.textContent = "Pokemon Details"
@@ -9,8 +10,17 @@ const pokemonCard = document.createElement("div")
 pokemonCard.id = "pokemonDetails"
 document.body.appendChild(pokemonCard)
 
+const saveBtn = document.createElement("button");
+saveBtn.id = "saveBtn";
+saveBtn.textContent = "Save"
+document.body.appendChild(saveBtn)
 
-const symbols = {
+const collectionBtn = document.createElement("button");
+collectionBtn.id = "collectionBtn";
+collectionBtn.textContent = "Go to collection";
+document.body.appendChild(collectionBtn);
+
+ const symbols = {
             "light": "🌟",
             "fire": "🔥",
             "water": "💧",
@@ -43,3 +53,5 @@ async function displayPokemonDetails() {
     }
 }
 displayPokemonDetails();
+styleButtons();
+bodyStyle();

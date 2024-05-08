@@ -1,4 +1,5 @@
 import { fetchBaseData } from "./apiFetch.js";
+import { styleButtons, bodyStyle } from "./globalStyling.js";
 
 // Creating elements for page with DOM-manipulation
 const title = document.createElement('h1');
@@ -44,9 +45,14 @@ async function createPokemonList(endpoint, listSize) {
             const listItem = document.createElement("li");
                 listItem.innerHTML = `
                     <h2>${data.name}</h2>
-                    <img src="${data.sprites.front_default}"></img>
+                    <div id="images">
+                        <img src="${data.sprites.front_default}"></img>
+                        <img src="${data.sprites.back_default}"></img>
+                    </div>
+                    
                 `;
-
+            pokemonListCards.appendChild(listItem);     
+            
             listItem.style.display = "flex";
             listItem.style.border = "2px solid black"
             listItem.style.borderRadius = "1rem"
@@ -54,25 +60,23 @@ async function createPokemonList(endpoint, listSize) {
             listItem.style.flexDirection = "column";
             listItem.style.alignItems = "center"
             listItem.style.textAlign = "center"
-
+            document.getElementById("images").style.display = "flex"
+            
             const button = document.createElement("button");
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
-
-            button.style.marginBottom = ".5rem"
-            button.style.cursor = "pointer"
-            button.style.borderWidth = ".3rem"
-
-            button.addEventListener ("click", handleButtonForLogin);
+            styleButtons();
+            button.addEventListener ("click", (event) => {
+                const pokemonId = event.target.dataset.id;
+                location.href = `../detailPage.html?id=${pokemonId}`
+            });
 
             listItem.appendChild(button);
-
-            pokemonListCards.appendChild(listItem);
 
         } 
     } catch (error) {
         throw new Error ("Could not display created pokemon list", error)
  }    
 }
-
+bodyStyle();
 createPokemonList("pokemon", 18);
