@@ -1,8 +1,26 @@
 import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
+import { styleButtons, bodyStyle } from "./globalStyling.js";
 
-const pokemonCard = document.getElementById('pokemonDetails');
+const pageTitle = document.createElement("h1")
+pageTitle.textContent = "Pokemon Details"
+pageTitle.style.textAlign = "center";
+document.body.appendChild(pageTitle)
 
-const symbols = {
+const pokemonCard = document.createElement("div")
+pokemonCard.id = "pokemonDetails"
+document.body.appendChild(pokemonCard)
+
+const saveBtn = document.createElement("button");
+saveBtn.id = "saveBtn";
+saveBtn.textContent = "Save"
+document.body.appendChild(saveBtn)
+
+const collectionBtn = document.createElement("button");
+collectionBtn.id = "collectionBtn";
+collectionBtn.textContent = "Go to collection";
+document.body.appendChild(collectionBtn);
+
+ const symbols = {
             "light": "🌟",
             "fire": "🔥",
             "water": "💧",
@@ -25,8 +43,14 @@ async function displayPokemonDetails() {
             <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p>
             <p>Abilities: ${pokemon.abilities.join(', ')}</p>
             `;
+        pokemonCard.style.display = "flex";
+        pokemonCard.style.flexDirection = "column"
+        pokemonCard.style.alignItems = "center"
+        pokemonCard.style.justifyContent = "center"
     } catch (error) {
         console.error("Didn't display any pokemon details on page", error);
     }
 }
 displayPokemonDetails();
+styleButtons();
+bodyStyle();
