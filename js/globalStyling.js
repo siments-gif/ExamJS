@@ -17,3 +17,15 @@ export function styleButtons () {
      button.style.borderWidth = ".3rem"
  }) 
  }
+
+ export function titleStyles() {
+    const titles = document.querySelectorAll("h1, h2")
+    titles.forEach(title => {
+        let titleText = title.textContent
+        
+        titleText = titleText.charAt(0).toUpperCase() + titleText.slice(1);
+
+        title.textContent = titleText;
+    })
+ }
+

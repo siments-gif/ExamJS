@@ -1,5 +1,5 @@
 import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
-import { styleButtons, bodyStyle } from "./globalStyling.js";
+import { styleButtons, bodyStyle, titleStyles } from "./globalStyling.js";
 
 const pageTitle = document.createElement("h1")
 pageTitle.textContent = "Pokemon Details"
@@ -47,6 +47,8 @@ async function displayPokemonDetails() {
         pokemonCard.style.flexDirection = "column"
         pokemonCard.style.alignItems = "center"
         pokemonCard.style.justifyContent = "center"
+        
+        titleStyles();
     } catch (error) {
         console.error("Didn't display any pokemon details on page", error);
     }

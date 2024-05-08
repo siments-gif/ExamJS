@@ -1,5 +1,5 @@
 import { fetchBaseData } from "./apiFetch.js";
-import { styleButtons, bodyStyle } from "./globalStyling.js";
+import { styleButtons, bodyStyle, titleStyles } from "./globalStyling.js";
 
 // Creating elements for page with DOM-manipulation
 const title = document.createElement('h1');
@@ -54,6 +54,7 @@ async function createPokemonList(endpoint, listSize) {
             const button = document.createElement("button");
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
+            titleStyles();
             styleButtons();
             button.addEventListener ("click", (event) => {
                 const pokemonId = event.target.dataset.id;
