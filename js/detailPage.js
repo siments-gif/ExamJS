@@ -30,29 +30,34 @@ document.body.appendChild(collectionBtn);
         };
 async function displayPokemonDetails() {
     try {
-        const urlParams = new URLSearchParams(window.location.search)
-        const pokemonId = urlParams.get("id");
+        const urlParams = new URLSearchParams(window.location.search); // Creates new URL parameters for search window
+        const pokemonId = urlParams.get("id"); // Specifies parameters gotten
         
         const pokemon = await fetchPokemonDetails(pokemonId);
-        const symbolForTypes = pokemon.types.map(type => symbols[type]);
+        const symbolForTypes = pokemon.types.map(type => symbols[type]); // Maps symbols to match type and symbol
 
         pokemonCard.innerHTML = `
             <h2>${pokemon.name}</h2>
-            <img src="${pokemon.image}"></img>
+            <div id="detailImages">
+                <img src="${pokemon.frontImage}"></img>
+                <img src="${pokemon.backImage}"></img>
+            </div>
             <p>Species: ${pokemon.species}</p>
             <p>Types: ${pokemon.types.join(', ')} -${symbolForTypes.join(', ')}</p>
             <p>Abilities: ${pokemon.abilities.join(', ')}</p>
             `;
+        pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling elements inside of innerhtml
+        pokemonCard.querySelector("#detailImages").style.gap = "1rem";
         pokemonCard.style.display = "flex";
         pokemonCard.style.flexDirection = "column"
         pokemonCard.style.alignItems = "center"
         pokemonCard.style.justifyContent = "center"
         
-        titleStyles();
+        titleStyles(); // Reference to a global style function
     } catch (error) {
-        console.error("Didn't display any pokemon details on page", error);
+        throw new Error("Didn't display any pokemon details on page", error);
     }
 }
-displayPokemonDetails();
-styleButtons();
-bodyStyle();
+displayPokemonDetails(); // Puts the display function on page
+styleButtons(); // Reference to a global style function
+bodyStyle(); // Reference to a global style function
