@@ -29,14 +29,22 @@ export function styleButtons () {
     })
  }
 
- export function formStyling() {
+ export function formStyling() { 
+    const formSection = document.querySelector("section");
+    formSection.style.display = "grid"
+    formSection.style.gridTemplateColumns = "1fr"
+    formSection.style.width = "40%"
+    formSection.style.margin = "0 auto"
+    
     const form = document.querySelector("form")
     form.style.backgroundColor = "#618e97"
-    form.style.display = "flex";
-    form.style.flexDirection = "column"
-    form.style.gap = "1rem"
+    form.style.display = "grid";
+    form.style.gap = ".8rem"
     form.style.marginTop = "4rem"
     form.style.justifyContent = "center"
     form.style.alignItems = "center"
+
+    form.style.border = "5px solid black"
+    form.style.borderRadius = "5rem"
  }
 
