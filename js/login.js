@@ -1,5 +1,4 @@
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
-import { fetchUser } from "./apiFetch.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
