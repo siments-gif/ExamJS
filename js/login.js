@@ -1,4 +1,4 @@
-import { styleButtons, titleStyles } from "./globalStyling.js";
+import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
@@ -50,5 +50,7 @@ loginForm.appendChild(loginButton);
 loginForm.appendChild(register);
 
 // Global Style functions
+formStyling();
 styleButtons();
 titleStyles();
+bodyStyle();

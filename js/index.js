@@ -56,7 +56,7 @@ async function createPokemonList(endpoint, listSize) {
             listItem.style.display = "flex";
             listItem.style.border = "2px solid black"
             listItem.style.borderRadius = "1rem"
-            listItem.style.backgroundColor = "red"
+            listItem.style.backgroundColor = "#618e97"
             listItem.style.flexDirection = "column";
             listItem.style.alignItems = "center"
             listItem.style.textAlign = "center"

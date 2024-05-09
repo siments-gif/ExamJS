@@ -4,21 +4,33 @@ import { styleButtons, bodyStyle, titleStyles } from "./globalStyling.js";
 const pageTitle = document.createElement("h1")
 pageTitle.textContent = "Pokemon Details"
 pageTitle.style.textAlign = "center";
-document.body.appendChild(pageTitle)
+document.body.appendChild(pageTitle);
+
+const cardSection = document.createElement("section");
+cardSection.id = "cardSection";
+document.body.appendChild(cardSection)
 
 const pokemonCard = document.createElement("div")
 pokemonCard.id = "pokemonDetails"
-document.body.appendChild(pokemonCard)
+cardSection.appendChild(pokemonCard)
+
+const buttons = document.createElement("div");
+buttons.id = "buttonDiv"
+cardSection.appendChild(buttons);
 
 const saveBtn = document.createElement("button");
 saveBtn.id = "saveBtn";
 saveBtn.textContent = "Save"
-document.body.appendChild(saveBtn)
+buttons.appendChild(saveBtn)
 
 const collectionBtn = document.createElement("button");
 collectionBtn.id = "collectionBtn";
 collectionBtn.textContent = "Go to collection";
-document.body.appendChild(collectionBtn);
+buttons.appendChild(collectionBtn);
+
+// Basic styling for seperate elements
+cardSection.style.backgroundColor = "#618e97"
+cardSection.style.paddingBottom = ".5rem"
 
  const symbols = {
             "light": "🌟",
@@ -50,6 +62,7 @@ async function displayPokemonDetails() {
         pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling image div inside of innerhtml
         pokemonCard.style.display = "flex";
         pokemonCard.style.flexDirection = "column"
+        
         pokemonCard.style.alignItems = "center"
         pokemonCard.style.justifyContent = "center"
         
