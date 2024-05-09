@@ -75,8 +75,8 @@ registerButton.addEventListener("click", async function(e){
 
     const username = usernameInput.value;
     const password = passwordInput.value;
-    const email = document.getElementById("emailInput");
-    const phone = document.getElementById("phoneInput");
+    const email = emailInput.value;
+    const phone = phoneInput.value;
 
     try {
         const users = await registerUser(username, password, email, phone)
