@@ -61,11 +61,11 @@ async function createPokemonList(endpoint, listSize) {
             listItem.style.alignItems = "center"
             listItem.style.textAlign = "center"
             document.getElementById("images").style.display = "flex"
-            
+            titleStyles();
+
             const button = document.createElement("button");
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
-            titleStyles();
             styleButtons();
             button.addEventListener ("click", (event) => {
                 const pokemonId = event.target.dataset.id;
