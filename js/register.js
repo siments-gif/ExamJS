@@ -12,7 +12,6 @@ bodyStyle();
 titleStyles();
 formStyling();
 
-
 const formList = document.getElementById("registerForm");
 formList.innerHTML = `
     <h1>Register Here</h1>

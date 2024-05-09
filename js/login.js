@@ -1,4 +1,5 @@
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
+import { fetchUser } from "./apiFetch.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
@@ -54,3 +55,17 @@ formStyling();
 styleButtons();
 titleStyles();
 bodyStyle();
+
+loginButton.addEventListener("click", async function(e){
+    e.preventDefault();
+
+    const username = userNameInput.value;
+    const password = passwordInput.value;
+
+    try {
+        const users = await fetchUser(username, password);
+        console.log(users);
+    }catch (ex) {
+        console.log("Cant post the user", ex);
+    }
+})

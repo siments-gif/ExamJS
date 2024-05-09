@@ -36,3 +36,23 @@ export async function fetchPokemonDetails(pokemonId) {
         throw new Error(`Failed to fetch Pokémon details: ${error}`);
     }
 }
+
+export async function fetchUser(username, password) {
+    try {
+        const res = await fetch("https://crudapi.co.uk/api/v1/user", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
+        },
+        body: JSON.stringify([{username, password}])
+    })
+        if(!res.ok) {
+            throw new Error('Network error for fetched user')
+        }
+        const data = await res.json();
+        console.log(data)
+    }catch(ex) {
+        throw new Error("Couldn't connect with api", ex)
+    }    
+}
