@@ -36,8 +36,7 @@ export async function fetchPokemonDetails(pokemonId) {
         throw new Error(`Failed to fetch Pokémon details: ${error}`);
     }
 }
-
-export async function fetchUser(username, password) {
+export async function registerUser(username, password, email, phone) {
     try {
         const res = await fetch("https://crudapi.co.uk/api/v1/user", {
         method: "POST",
@@ -45,7 +44,7 @@ export async function fetchUser(username, password) {
             "Content-Type": "application/json",
                 Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
         },
-        body: JSON.stringify([{username, password}])
+        body: JSON.stringify([{username, password, email, phone}])
     })
         if(!res.ok) {
             throw new Error('Network error for fetched user')

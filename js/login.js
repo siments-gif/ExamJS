@@ -55,17 +55,3 @@ formStyling();
 styleButtons();
 titleStyles();
 bodyStyle();
-
-loginButton.addEventListener("click", async function(e){
-    e.preventDefault();
-
-    const username = userNameInput.value;
-    const password = passwordInput.value;
-
-    try {
-        const users = await fetchUser(username, password);
-        console.log(users);
-    }catch (ex) {
-        console.log("Cant post the user", ex);
-    }
-})
