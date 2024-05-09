@@ -10,7 +10,7 @@ navList.id = "navList"
 navList.innerHTML = `
     <li><a href="../index.html">Home</a></li>
     <li><a href="../login.html">Login</a></li>
-    <li><a href="../personalListPage.html">Register</a></li>
+    <li><a href="../registerPage.html">Register</a></li>
 `
 navList.style.display = "flex";
 navList.style.gap = "3rem";

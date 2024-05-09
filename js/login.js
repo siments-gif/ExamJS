@@ -11,19 +11,19 @@ const formTitle = document.createElement("h1");
 formTitle.textContent = "Login Form"
 
 const userNameLabel = document.createElement("label");
-userNameLabel.id = "userNameLabel";
+userNameLabel.className = "userNameLabel";
 userNameLabel.textContent = "Username";
 
 const userNameInput = document.createElement("input");
-userNameInput.id = "userNameInput";
+userNameInput.className = "userNameInput";
 userNameInput.type = "text";
 
 const passwordLabel = document.createElement("label");
-passwordLabel.id = "passwordLabel";
+passwordLabel.className = "passwordLabel";
 passwordLabel.textContent = "Password";
 
 const passwordInput = document.createElement("input");
-passwordInput.id = "passwordInput";
+passwordInput.className = "passwordInput";
 passwordInput.type = "password";
 
 const loginButton = document.createElement("button");
