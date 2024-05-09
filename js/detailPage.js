@@ -31,15 +31,19 @@ buttons.appendChild(collectionBtn);
 // Basic styling for seperate elements
 cardSection.style.backgroundColor = "#618e97"
 cardSection.style.paddingBottom = ".5rem"
+cardSection.style.width = "40%"
+cardSection.style.margin = "0 auto"
+cardSection.style.border = "3px solid black"
+cardSection.style.borderRadius = "3rem"
 
- const symbols = {
-            "light": "🌟",
-            "fire": "🔥",
-            "water": "💧",
-            "Electric": "⚡️",
-            "grass": "🌿",
-            "poison": "☢"
-        };
+const symbols = {
+    "light": "🌟",
+    "fire": "🔥",
+    "water": "💧",
+    "Electric": "⚡️",
+    "grass": "🌿",
+    "poison": "☢"
+};
         
 async function displayPokemonDetails() {
     try {
@@ -62,7 +66,6 @@ async function displayPokemonDetails() {
         pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling image div inside of innerhtml
         pokemonCard.style.display = "flex";
         pokemonCard.style.flexDirection = "column"
-        
         pokemonCard.style.alignItems = "center"
         pokemonCard.style.justifyContent = "center"
         
