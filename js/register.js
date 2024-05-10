@@ -1,5 +1,6 @@
 import { bodyStyle, titleStyles, formStyling, styleButtons } from "./globalStyling.js";
 import { registerUser } from "./apiFetch.js";
+import { registerValidation } from "./userValidation.js";
 
 const formTitle = document.createElement("h1")
 formTitle.textContent = "Register Form"
@@ -71,21 +72,24 @@ formStyling();
 styleButtons();
 
 registerButton.addEventListener("click", async function(e){
-    e.preventDefault();
+    e.preventDefault(); // Preventing the default outcome of event
 
-    const username = usernameInput.value;
-    const password = passwordInput.value;
-    const email = emailInput.value;
-    const phone = phoneInput.value;
-
+    const username = usernameInput.value.trim(); // Removing whitespace of value
+    const password = passwordInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    
     try {
-        const users = await registerUser(username, password, email, phone)
-        console.log(users)
-        if(users === 0) {
-            alert("User already registered");
-        }
-    } catch (error) {
-        console.log("Couldn't post user to API", error)
+        const validationMessage = registerValidation(username, password, email, phone)
+        if(validationMessage) {
+            alert(validationMessage);
+            return; // Returning validation
+        }else {
+          await registerUser(username, password, email, phone) // Refrencing POST call
+          alert("Your user is now registered");  
+        }  
+    }catch (error) {
+        console.log("Couldn't post user to API", error);
     }
 })
 

@@ -65,9 +65,9 @@ async function displayPokemonDetails() {
             `;
         pokemonCard.querySelector("#detailImages").style.display = "flex"; // Styling image div inside of innerhtml
         pokemonCard.style.display = "flex";
-        pokemonCard.style.flexDirection = "column"
-        pokemonCard.style.alignItems = "center"
-        pokemonCard.style.justifyContent = "center"
+        pokemonCard.style.flexDirection = "column";
+        pokemonCard.style.alignItems = "center";
+        pokemonCard.style.justifyContent = "center";
         
         titleStyles(); // Reference to a global style function
     } catch (error) {
