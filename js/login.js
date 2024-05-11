@@ -1,5 +1,6 @@
-import { loginUser } from "./apiFetch.js";
+import { loginUser, registerUser } from "./apiFetch.js";
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
+import { loginValidation } from "./userValidation.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
@@ -62,10 +63,16 @@ loginButton.addEventListener("click", async function(e) {
     const username = userNameInput.value.trim();
 
     try {
-        await loginUser(username);
-        console.log(username);
-        location.href = "../index.html"
+        const userData = await loginUser(username);
+        const validation = loginValidation(username, userData);
+        if(validation) {
+            alert(validation);
+            return; // Makes it so it returns if user does not exist in user
+        } else {
+            console.log(username);
+            location.href = "../index.html"  
+        }      
     } catch (error) {
-        
+        console.log("Could not find userData")
     }
 })

@@ -24,17 +24,6 @@ let listStyle = document.getElementById("pokemonList");
     listStyle.style.gridTemplateColumns = "repeat(3, 1fr)"
     listStyle.style.listStyle = "none"
 
-
-function handleButtonForLogin(event) {
-    const pokemonId = event.target.dataset.id
-    const isLoggedIn = true;
-    if (isLoggedIn) {
-        location.href = `../detailPage.html?id=${pokemonId}`
-    } else {
-        location.href = "../login.html";
-    }
-}
-
 // Creates a list with pokemons from API
 async function createPokemonList(endpoint, listSize) {
 

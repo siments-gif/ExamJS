@@ -1,9 +1,8 @@
-// Needs to be changed, doesnt work like it should.
-export function loginValidation(username, password) { 
-    if(username == registerUser(username) && password == registerUser(password)) {
-        location.href="../index.html";
+export function loginValidation(username, userData) { 
+    if(!userData || !userData.username === username) {
+        return "User does not exist"
     }else {
-        alert("User does not exist");
+        return null;
     }
 } 
 

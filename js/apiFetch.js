@@ -37,6 +37,7 @@ export async function fetchPokemonDetails(pokemonId) {
     }
 }
 
+// Problem with fetchCall gives error code 400 (Bad request to server)
 export async function loginUser(username) {
     try {
         const res = await fetch(`https://crudapi.co.uk/api/v1/user/${username}`, {
