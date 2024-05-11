@@ -80,9 +80,9 @@ registerButton.addEventListener("click", async function(e){
     const phone = phoneInput.value.trim();
     
     try {
-        const validationMessage = registerValidation(username, password, email, phone)
-        if(validationMessage) {
-            alert(validationMessage);
+        const validation = registerValidation(username, password, email, phone)
+        if(validation) {
+            alert(validation);
             return; // Returning validation
         }else {
           await registerUser(username, password, email, phone) // Refrencing POST call

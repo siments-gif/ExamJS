@@ -1,3 +1,4 @@
+import { loginUser } from "./apiFetch.js";
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
 
 // Creating login elements (HTML structure)
@@ -54,3 +55,17 @@ formStyling();
 styleButtons();
 titleStyles();
 bodyStyle();
+
+loginButton.addEventListener("click", async function(e) {
+    e.preventDefault();
+
+    const username = userNameInput.value.trim();
+
+    try {
+        await loginUser(username);
+        console.log(username);
+        location.href = "../index.html"
+    } catch (error) {
+        
+    }
+})

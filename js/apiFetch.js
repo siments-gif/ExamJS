@@ -33,9 +33,29 @@ export async function fetchPokemonDetails(pokemonId) {
         };
         return pokemonDetails;
     } catch (error) {
-        throw new Error(`Failed to fetch Pokémon details: ${error}`);
+        throw new Error("Failed to fetch Pokémon details", error);
     }
 }
+
+export async function loginUser(username) {
+    try {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/user/${username}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+            }
+        })
+        if(!res.ok) {
+            throw new Error("Network issue with fetching user")
+        }
+        const data = await res.json();
+        console.log(data);
+    } catch (error) {
+        console.log("Something went wrong fetching user data from api", error)
+    }
+}
+
 export async function registerUser(username, password, email, phone) {
     try {
         const res = await fetch("https://crudapi.co.uk/api/v1/user", {
@@ -47,11 +67,11 @@ export async function registerUser(username, password, email, phone) {
         body: JSON.stringify([{username, password, email, phone}])
     })
         if(!res.ok) {
-            throw new Error('Network error for fetched user')
+            throw new Error('Network error for posting user')
         }
         const data = await res.json();
-        console.log(data)
-    }catch(ex) {
-        throw new Error("Couldn't connect with api", ex)
+        console.log(data);
+    }catch(error) {
+        throw new Error("Couldn't connect with api", error)
     }    
 }
