@@ -7,9 +7,9 @@ export async function fetchBaseData (endpoint) {
             throw new Error ("Response gotten was not ok");
         }
         const data = await res.json();
-        return data;
+        return data; // Returning json data of response
     }catch (error) {
-        throw new Error ("Can't get data from pokeAPI")
+        throw new Error ("Can't get data from pokeAPI");
     }
 }
 
@@ -19,7 +19,7 @@ export async function fetchPokemonDetails(pokemonId) {
         if (!res.ok) {
             throw new Error('Network error for fetched data not ok');
         }
-        const data = await res.json();   
+        const data = await res.json();  
 
         // Takes specific details from the response
         const pokemonDetails = {
@@ -52,6 +52,7 @@ export async function loginUser(username) {
         }
         const data = await res.json();
         console.log(data);
+        return data; // Returning json data of response
     } catch (error) {
         console.log("Something went wrong fetching user data from api", error)
     }
