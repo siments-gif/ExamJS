@@ -24,7 +24,7 @@ export async function fetchPokemonDetails(pokemonId) {
         // Takes specific details from the response
         const pokemonDetails = {
             name: data.name,
-            species: data.species.name,
+            weight: data.weight,
             frontImage: data.sprites.front_default,
             backImage: data.sprites.back_default,
             types: data.types.map(type => type.type.name), // Maps pokemon types
