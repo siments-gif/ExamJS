@@ -63,15 +63,16 @@ loginButton.addEventListener("click", async function(e) {
     const password = passwordInput.value.trim();
 
     try {
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const existingUser = users.find(user => user.username === username && user.password === password);
+        const users = JSON.parse(localStorage.getItem("users")) || []; // Getting users key from localStorage
+        const existingUser = users.find(user => user.username === username && user.password === password); // Finding similarity to validate
         
-        const validation = loginValidation(username, password, existingUser);
+        const validation = loginValidation(username, password, existingUser); // Refrencing function in validation file
         if (validation) {
-            alert (validation);
+            alert (validation); // Using validation file
             return;
         }
-        location.href = "../index.html"      
+        location.href = "../index.html"
+        localStorage.setItem("loggedIn", JSON.stringify(users))      
     } catch (error) {
         console.log("Could not find userData", error)
     }

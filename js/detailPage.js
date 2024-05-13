@@ -74,6 +74,14 @@ async function displayPokemonDetails() {
         throw new Error("Didn't display any pokemon details on page", error);
     }
 }
+
+saveBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const uploadData = JSON.parse(localStorage.getItem("pokemonCollection")) || [];
+    uploadData.push(displayPokemonDetails(pokemonCard))
+    localStorage.setItem("pokemonCollection", JSON.stringify(uploadData));
+})
 displayPokemonDetails(); // Puts the display function on page
 styleButtons(); // Reference to a global style function
 bodyStyle(); // Reference to a global style function

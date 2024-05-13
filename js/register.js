@@ -86,9 +86,10 @@ registerButton.addEventListener("click", async function(e){
             return; // Returning validation
         }else {
           await registerUser(username, password, email, phone) // Refrencing POST call
-          const users = JSON.parse(localStorage.getItem("users")) || [];
-          users.push({username, password, email, phone});
-          localStorage.setItem("users", JSON.stringify(users));
+
+          const users = JSON.parse(localStorage.getItem("users")) || []; // Defining and getting users
+          users.push({username, password, email, phone}); // Push values into users array
+          localStorage.setItem("users", JSON.stringify(users)); // Set items into localStorage
 
           alert("Your user is now registered in both localStorage and server");  
         }  
