@@ -1,4 +1,4 @@
-const baseUrl = "https://pokeapi.co/api/v2"
+const baseUrl = "https://pokeapi.co/api/v1"
 
 export async function fetchBaseData (endpoint) {
     try {
@@ -40,11 +40,11 @@ export async function fetchPokemonDetails(pokemonId) {
 // Problem with fetchCall gives error code 400 (Bad request to server)
 export async function loginUser(username) {
     try {
-        const res = await fetch(`https://crudapi.co.uk/api/v1/user/${username}`, {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/user/uuid/${username}`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+                "Content-Type": "application/json", 
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A" 
             }
         })
         if(!res.ok) {
@@ -52,7 +52,7 @@ export async function loginUser(username) {
         }
         const data = await res.json();
         console.log(data);
-        return data; // Returning json data of response
+        return data;
     } catch (error) {
         console.log("Something went wrong fetching user data from api", error)
     }

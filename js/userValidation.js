@@ -1,6 +1,6 @@
-export function loginValidation(username, userData) { 
-    if(!userData || !userData.username === username) {
-        return "User does not exist"
+export function loginValidation(username, password) { 
+    if(username === "" || password === "") {
+        return "You need to fill in login credentials"
     }else {
         return null;
     }

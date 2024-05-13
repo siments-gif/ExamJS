@@ -63,14 +63,13 @@ loginButton.addEventListener("click", async function(e) {
     const username = userNameInput.value.trim();
 
     try {
-        const userData = await loginUser(username);
-        const validation = loginValidation(username, userData);
+        const existingUser = await loginUser(username);
+        const validation = loginValidation(existingUser);
         if(validation) {
             alert(validation);
             return; // Makes it so it returns if user does not exist in user
         } else {
             console.log(username);
-            location.href = "../index.html"  
         }      
     } catch (error) {
         console.log("Could not find userData")
