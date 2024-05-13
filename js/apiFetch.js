@@ -1,8 +1,8 @@
-const baseUrl = "https://pokeapi.co/api/v1"
+const pokemonUrl = "https://pokeapi.co/api/v1"
 
 export async function fetchBaseData (endpoint) {
     try {
-        const res = await fetch(`${baseUrl}/${endpoint}`);
+        const res = await fetch(`${pokemonUrl}/${endpoint}`);
         if (!res.ok) {
             throw new Error ("Response gotten was not ok");
         }
@@ -15,7 +15,7 @@ export async function fetchBaseData (endpoint) {
 
 export async function fetchPokemonDetails(pokemonId) {
     try {
-        const res = await fetch(`${baseUrl}/pokemon/${pokemonId}`); // Fetching new response from API
+        const res = await fetch(`${pokemonUrl}/pokemon/${pokemonId}`); // Fetching new response from API
         if (!res.ok) {
             throw new Error('Network error for fetched data not ok');
         }
@@ -34,27 +34,6 @@ export async function fetchPokemonDetails(pokemonId) {
         return pokemonDetails;
     } catch (error) {
         throw new Error("Failed to fetch Pokémon details", error);
-    }
-}
-
-// Problem with fetchCall gives error code 400 (Bad request to server)
-export async function loginUser(username) {
-    try {
-        const res = await fetch(`https://crudapi.co.uk/api/v1/user/uuid/${username}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json", 
-                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A" 
-            }
-        })
-        if(!res.ok) {
-            throw new Error("Network issue with fetching user")
-        }
-        const data = await res.json();
-        console.log(data);
-        return data;
-    } catch (error) {
-        console.log("Something went wrong fetching user data from api", error)
     }
 }
 

@@ -1,7 +1,10 @@
-export function loginValidation(username, password) { 
+export function loginValidation(username, password, existingUser) { 
     if(username === "" || password === "") {
         return "You need to fill in login credentials"
-    }else {
+    }else if(!existingUser) {
+        return "User not found, try again or register new user";
+    }
+    else {
         return null;
     }
 } 

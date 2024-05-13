@@ -86,7 +86,11 @@ registerButton.addEventListener("click", async function(e){
             return; // Returning validation
         }else {
           await registerUser(username, password, email, phone) // Refrencing POST call
-          alert("Your user is now registered");  
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          users.push({username, password, email, phone});
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert("Your user is now registered in both localStorage and server");  
         }  
     }catch (error) {
         console.log("Couldn't post user to API", error);
