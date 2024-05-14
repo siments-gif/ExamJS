@@ -95,18 +95,20 @@ async function displayPokemonDetails() {
         pokemonCard.style.alignItems = "center";
         pokemonCard.style.justifyContent = "center";
         titleStyles(); // Reference to a global style function
-
+        
         saveBtn.addEventListener("click", function(){
             saveBtnHandler(pokemon) // Refrencing our handler to work inside the card
         });
-        collectionBtn.addEventListener("click", function(){
-            location.href = "../collectionPage.html";
-        });
-        
     } catch (error) {
         throw new Error("Didn't display any pokemon details on page", error);
     }
 }
+
+// Takes user to collection page
+collectionBtn.addEventListener("click", function(){
+    location.href = "../collectionPage.html";
+});
+
 displayPokemonDetails(); // Puts the display function on page
 styleButtons(); // Reference to a global style function
 bodyStyle(); // Reference to a global style function
