@@ -24,4 +24,10 @@ export function registerValidation(username, password, email, phone) {
     }else if(password.search(/[0-9]/) < 0) {
         return("Password must have numbers");
     }
+
+    if (!phone.length === 8) {
+        return "Phonenumber needs to be 8 digits"
+    } else if(phone.search(/[0-9]/) < 8) {
+        return "Phonenumber should only be digits"
+    }
 }
