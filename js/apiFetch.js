@@ -1,4 +1,4 @@
-const pokemonUrl = "https://pokeapi.co/api/v1"
+const pokemonUrl = "https://pokeapi.co/api/v2"
 
 export async function fetchBaseData (endpoint) {
     try {
@@ -10,6 +10,26 @@ export async function fetchBaseData (endpoint) {
         return data; // Returning json data of response
     }catch (error) {
         throw new Error ("Can't get data from pokeAPI");
+    }
+}
+
+export async function saveToCollection(uploadData) {
+    try {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                    Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
+            },
+            body: JSON.stringify(uploadData)
+        })
+        if(!res.ok) {
+            throw new Error(`Something went wrong with ${res.status}`);
+        }
+        const data = await res.json();
+        console.log(data);
+    } catch (error) {
+        throw new Error("Something went wrong with posting details to collection", error)
     }
 }
 

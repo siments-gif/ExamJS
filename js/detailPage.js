@@ -1,4 +1,4 @@
-import { fetchPokemonDetails } from "./apiFetch.js"; // Importing fetch Function
+import { fetchPokemonDetails, saveToCollection } from "./apiFetch.js"; // Importing fetch Function
 import { styleButtons, bodyStyle, titleStyles } from "./globalStyling.js";
 
 // Creating every page element
@@ -48,7 +48,8 @@ const symbols = {
 };
 
 // Function for handling eventListener
-function saveBtnHandler(pokemon) {
+async function saveBtnHandler(pokemon) {
+
     let uploadData = {
         name: pokemon.name,
         frontImage: pokemon.frontImage,
@@ -69,6 +70,12 @@ function saveBtnHandler(pokemon) {
         console.log(existingData); // Checking whats in the collection from before with new saved addition
         localStorage.setItem("pokemonCollection", JSON.stringify(existingData));
         alert(`${pokemon.name} saved to your collection`);
+        try {
+            await saveToCollection(uploadData);
+            alert("Saved to server")
+        } catch (error) {
+            throw new Error("Couldnt post to backend API", error)
+        }
 }
         
 async function displayPokemonDetails() {

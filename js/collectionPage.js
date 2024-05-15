@@ -59,6 +59,8 @@ cardStructure.style.gap = ".5rem";
 cardStructure.style.justifyContent = "end";
 cardStructure.style.alignItems = "center";
 
+const collectionData = localStorage.getItem("pokemonCollection");
+
 
 // Global styling for main elements used on all pages
 bodyStyle();
