@@ -77,7 +77,6 @@ async function displayCollection(){
 }
 displayCollection(); // Displaying collection and setting arguments for parameters
 
-
 // Global styling for main elements used on all pages
 bodyStyle();
 styleButtons();

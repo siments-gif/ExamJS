@@ -69,7 +69,7 @@ export async function saveToCollection(uploadData) {
         const data = await res.json();
         console.log(data);
     } catch (error) {
-        throw new Error("Something went wrong with posting details to collection", error)
+        throw new Error("Something went wrong with posting details to collection", error);
     }
 }
 export async function registerUser(username, password, email, phone) {
@@ -81,13 +81,29 @@ export async function registerUser(username, password, email, phone) {
                 Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
         },
         body: JSON.stringify([{username, password, email, phone}])
-    })
+    });
         if(!res.ok) {
             throw new Error('Network error for posting user')
         }
         const data = await res.json();
         console.log(data);
     }catch(error) {
-        throw new Error("Couldn't connect with api", error)
+        throw new Error("Couldn't connect with api", error);
     }    
+}
+
+export async function deleteFromCollection(uuid){
+    const res = await fetch(`https://crudapi.co.uk/api/v1/collection/${uuid}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+        },
+    });
+        if(!res.ok){
+            throw new Error(`Something went wrong while fething: ${res.status}`)
+        }
+        const data = await res.json();
+        console.log(data);
+        return data
 }
