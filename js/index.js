@@ -40,7 +40,7 @@ async function createPokemonList(endpoint, listSize) {
                     </div>
                     
                 `;
-            pokemonListCards.appendChild(listItem);     
+            pokemonListCards.appendChild(listItem);   
             
             listItem.style.display = "flex";
             listItem.style.border = "2px solid black"

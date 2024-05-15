@@ -72,7 +72,7 @@ async function saveBtnHandler(pokemon) {
         alert(`${pokemon.name} saved to your collection`);
         try {
             await saveToCollection(uploadData);
-            alert("Saved to server")
+            alert(`Saved to server as well`)
         } catch (error) {
             throw new Error("Couldnt post to backend API", error)
         }

@@ -13,8 +13,6 @@ export async function fetchBaseData (endpoint) {
     }
 }
 
-
-
 export async function fetchPokemonDetails(pokemonId) {
     try {
         const res = await fetch(`${pokemonUrl}/pokemon/${pokemonId}`); // Fetching new response from API
@@ -37,6 +35,22 @@ export async function fetchPokemonDetails(pokemonId) {
     } catch (error) {
         throw new Error("Failed to fetch Pokémon details", error);
     }
+}
+
+export async function getCollection() {
+    const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+        } 
+    });
+    if(!res.ok) {
+        throw new Error(`Something went wrong with fetching. check: ${res.status}`)
+    }
+    const data = await res.json();
+    console.log(data);
+    return data;
 }
 
 export async function saveToCollection(uploadData) {

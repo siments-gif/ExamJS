@@ -1,3 +1,4 @@
+import { getCollection } from "./apiFetch.js";
 import { titleStyles, styleButtons, bodyStyle } from "./globalStyling.js";
 
 // Creating page elements
@@ -13,8 +14,11 @@ subTitle.textContent = "My favorite pokemons";
 const cardStructure = document.createElement("div")
 cardStructure.className = "cardStructure"
 
-const cardList = document.createElement("ul")
-cardList.id = "cardList";
+const cardInformation = document.createElement("ul")
+cardInformation.id = "cardInformation";
+
+const cardButtons = document.createElement("div");
+cardButtons.id = "cardBtnContainer";
 
 const addToCollection = document.createElement("button");
 addToCollection.id = "addNewBtn"
@@ -35,11 +39,12 @@ document.body.appendChild(mainStructure);
 mainStructure.appendChild(subTitle);
 mainStructure.appendChild(cardStructure);
 
-cardStructure.appendChild(cardList);
+cardStructure.appendChild(cardInformation);
+cardStructure.appendChild(cardButtons);
 
-cardList.appendChild(addToCollection);
-cardList.appendChild(changeCollection);
-cardList.appendChild(deleteFromCollection);
+cardButtons.appendChild(addToCollection);
+cardButtons.appendChild(changeCollection);
+cardButtons.appendChild(deleteFromCollection);
 
 // Styling for page elements created
 mainStructure.style.display = "flex";
@@ -50,16 +55,22 @@ mainStructure.style.backgroundColor = "#618e97";
 mainTitle.style.textAlign = "center";
 subTitle.style.textAlign = "center";
 
-cardList.style.display = "flex";
-cardList.style.gap = "1.5rem";
-cardList.style.marginRight = "2%";
-
 cardStructure.style.display = "flex";
 cardStructure.style.gap = ".5rem";
 cardStructure.style.justifyContent = "end";
 cardStructure.style.alignItems = "center";
 
-const collectionData = localStorage.getItem("pokemonCollection");
+
+// Displaying collection from backendAPI
+async function displayCollection(){
+    try {
+        const data = await getCollection();
+        console.log(data);
+    } catch (error) {
+        throw new Error("Something went wrong while trying to display collection", error)
+    }
+}
+displayCollection(); // Displaying collection and setting arguments for parameters
 
 
 // Global styling for main elements used on all pages
