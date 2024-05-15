@@ -66,6 +66,11 @@ async function displayCollection(){
     try {
         const data = await getCollection();
         console.log(data);
+        data.forEach(item => {
+            const listElement = document.createElement("li");
+            listElement.textContent = item;
+            cardInformation.appendChild(listElement);
+        });
     } catch (error) {
         throw new Error("Something went wrong while trying to display collection", error)
     }
