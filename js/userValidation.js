@@ -18,8 +18,6 @@ export function registerValidation(username, password, email, phone) {
         return("All fields needs to be filled out");
     }else if(username.length < 3 || username.length > 20) {
         return("username needs to contain between 3 and 20 characters");
-    }else if(username.search(/[^a-zA-z0-9\-\/]/)) {
-        return "Username can't have special characters"
     }
     
     // Validation for email and checking exsisting users
@@ -34,15 +32,6 @@ export function registerValidation(username, password, email, phone) {
         return("password must have first character as uppercase");
     }else if(password.search(/[0-9]/) < 0) {
         return("Password must have numbers");
-    }else if(password.search(/[^a-zA-z0-9\-\/]/)) {
-        return "Password can't use special characters"
-    }
-
-    // Validation for phonenumber input
-    if(phone.search(/[0-9]/) < 8) {
-        return "Phonenumber should only be digits"
-    }else if (!phone.length === 8) {
-        return "Phonenumber needs to be 8 digits"
     }
 }
 
