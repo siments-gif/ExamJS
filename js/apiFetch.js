@@ -1,5 +1,6 @@
 const pokemonUrl = "https://pokeapi.co/api/v2"
 
+// Getting every pokemon from pokeAPI
 export async function fetchBaseData (endpoint) {
     try {
         const res = await fetch(`${pokemonUrl}/${endpoint}`);
@@ -13,6 +14,7 @@ export async function fetchBaseData (endpoint) {
     }
 }
 
+// Fetching pokemon detail from pokeAPI
 export async function fetchPokemonDetails(pokemonId) {
     try {
         const res = await fetch(`${pokemonUrl}/pokemon/${pokemonId}`); // Fetching new response from API
@@ -37,6 +39,7 @@ export async function fetchPokemonDetails(pokemonId) {
     }
 }
 
+// Function for getting collection from backendAPI
 export async function getCollection() {
     const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
         method: "GET",
@@ -50,9 +53,10 @@ export async function getCollection() {
     }
     const data = await res.json();
     console.log(data);
-    return data.items;
+    return data.items; // Returning item array from fetch
 }
 
+// Function for saving data to backendAPI
 export async function saveToCollection(uploadData) {
     try {
         const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
@@ -72,6 +76,27 @@ export async function saveToCollection(uploadData) {
         throw new Error("Something went wrong with posting details to collection", error);
     }
 }
+
+// Function for deleting spesific data from collection
+export async function deleteFromCollection(){
+    try {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
+        },
+    });
+    if(!res.ok){
+        throw new Error ("Problem with finding source for deletion", res.statusText);
+    }
+    console.log(`Sucessfully deleted from API`);
+    } catch (error) {
+        throw new Error("Could not connect with API", error);
+    }  
+};
+
+// Function for registering user to backendAPI
 export async function registerUser(username, password, email, phone) {
     try {
         const res = await fetch("https://crudapi.co.uk/api/v1/user", {
