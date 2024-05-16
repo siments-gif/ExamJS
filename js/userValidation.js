@@ -35,7 +35,7 @@ export function registerValidation(username, password, email, phone) {
     }else if(password.search(/[0-9]/) < 0) {
         return("Password must have numbers");
     }else if(password.search(/[^a-zA-z0-9\-\/]/)) {
-        return "Using can't use special characters"
+        return "Password can't use special characters"
     }
 
     // Validation for phonenumber input
