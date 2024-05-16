@@ -93,6 +93,11 @@ async function displayCollection(){
 }
 displayCollection(); // Displaying collection and setting arguments for parameters
 
+async function deleteFromCollection(uuid){
+    const deleteData = await deleteFromCollection(`${uuid}`);
+    deleteData
+};
+
 // Global styling for main elements used on all pages
 bodyStyle();
 titleStyles();

@@ -50,7 +50,7 @@ export async function getCollection() {
     }
     const data = await res.json();
     console.log(data);
-    return data.items;
+    return data.items; // Returning item array from fetch
 }
 
 export async function saveToCollection(uploadData) {
@@ -72,6 +72,25 @@ export async function saveToCollection(uploadData) {
         throw new Error("Something went wrong with posting details to collection", error)
     }
 }
+
+export async function deleteFromCollection(uuid){
+    try {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/collection/${uuid}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+                Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A",
+        },
+    });
+    if(!res.ok){
+        throw new Error ("Problem with finding source for deletion", res.statusText);
+    }
+    console.log(`${uuid} sucessfully deleted from API`);
+    } catch (error) {
+        throw new Error("Could not connect with API", error);
+    }  
+};
+
 export async function registerUser(username, password, email, phone) {
     try {
         const res = await fetch("https://crudapi.co.uk/api/v1/user", {
