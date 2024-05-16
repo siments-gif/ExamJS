@@ -50,7 +50,7 @@ export async function getCollection() {
     }
     const data = await res.json();
     console.log(data);
-    return data;
+    return data.items;
 }
 
 export async function saveToCollection(uploadData) {

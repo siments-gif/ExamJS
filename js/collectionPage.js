@@ -40,11 +40,6 @@ mainStructure.appendChild(subTitle);
 mainStructure.appendChild(cardStructure);
 
 cardStructure.appendChild(cardInformation);
-cardStructure.appendChild(cardButtons);
-
-cardButtons.appendChild(addToCollection);
-cardButtons.appendChild(changeCollection);
-cardButtons.appendChild(deleteFromCollection);
 
 // Styling for page elements created
 mainStructure.style.display = "flex";
@@ -55,11 +50,9 @@ mainStructure.style.backgroundColor = "#618e97";
 mainTitle.style.textAlign = "center";
 subTitle.style.textAlign = "center";
 
-cardStructure.style.display = "flex";
-cardStructure.style.gap = ".5rem";
-cardStructure.style.justifyContent = "end";
-cardStructure.style.alignItems = "center";
-
+cardStructure.style.display = "grid";
+cardStructure.style.gridTemplateColumns = "1fr, 1fr";
+cardStructure.style.justifyContent = "center";
 
 // Displaying collection from backendAPI
 async function displayCollection(){
@@ -68,9 +61,32 @@ async function displayCollection(){
         console.log(data);
         data.forEach(item => {
             const listElement = document.createElement("li");
-            listElement.textContent = item;
-            cardInformation.appendChild(listElement);
-        });
+            listElement.innerHTML = `
+                <h2>${item.name}</h2>
+                <p>Weight: ${item.weight}</p>
+                <p>Abilities: ${item.abilities.join(" , ")}</p>
+                <p>Types: ${item.types.join(" , ")}</p>
+            `
+            cardStructure.appendChild(listElement);
+            listElement.appendChild(addToCollection.cloneNode(true)); // Cloning button to my list element 
+            listElement.appendChild(changeCollection.cloneNode(true)); // Cloning button to my list element
+            listElement.appendChild(deleteFromCollection.cloneNode(true)); // Cloning button to my list element
+            
+            listElement.style.display = "flex";
+            listElement.style.gap = "7rem";
+            listElement.style.textAlign = "center";
+            listElement.style.justifyContent = "center";
+            listElement.style.alignItems = "center";
+            listElement.style.backgroundColor = "#d4ebf2"
+            
+            listElement.style.border = "2px solid black"
+            listElement.style.borderRadius = "1rem"
+            listElement.style.marginBottom = ".5rem"
+            listElement.style.padding = "1rem"
+            
+
+            styleButtons(); // Global styling for buttons
+        }); 
     } catch (error) {
         throw new Error("Something went wrong while trying to display collection", error)
     }
@@ -79,5 +95,4 @@ displayCollection(); // Displaying collection and setting arguments for paramete
 
 // Global styling for main elements used on all pages
 bodyStyle();
-styleButtons();
 titleStyles();
