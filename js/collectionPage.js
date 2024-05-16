@@ -1,4 +1,4 @@
-import { getCollection } from "./apiFetch.js";
+import { getCollection, deleteFromCollection } from "./apiFetch.js";
 import { titleStyles, styleButtons, bodyStyle } from "./globalStyling.js";
 
 // Creating page elements
@@ -28,9 +28,9 @@ const changeCollection = document.createElement("button");
 changeCollection.id = "changeNameBtn"
 changeCollection.textContent = "Change"
 
-const deleteFromCollection = document.createElement("button");
-deleteFromCollection.id = "deletePokemonBtn"
-deleteFromCollection.textContent = "Delete"
+const deleteCollection = document.createElement("button");
+deleteCollection.id = "deletePokemonBtn"
+deleteCollection.textContent = "Delete"
 
 // Append the elements to right relationships
 document.body.appendChild(mainTitle);
@@ -67,10 +67,11 @@ async function displayCollection(){
                 <p>Abilities: ${item.abilities.join(" , ")}</p>
                 <p>Types: ${item.types.join(" , ")}</p>
             `
+
             cardStructure.appendChild(listElement);
             listElement.appendChild(addToCollection.cloneNode(true)); // Cloning button to my list element 
             listElement.appendChild(changeCollection.cloneNode(true)); // Cloning button to my list element
-            listElement.appendChild(deleteFromCollection.cloneNode(true)); // Cloning button to my list element
+            listElement.appendChild(deleteCollection.cloneNode(true)); // Cloning button to my list element
             
             listElement.style.display = "flex";
             listElement.style.gap = "7rem";
@@ -84,6 +85,12 @@ async function displayCollection(){
             listElement.style.marginBottom = ".5rem"
             listElement.style.padding = "1rem"
             
+            deleteCollection.addEventListener("click", async (e) => {
+                e.preventDefault();
+
+                await deleteFromCollection(listElement);
+                alert("Not there anymore")
+            });
 
             styleButtons(); // Global styling for buttons
         }); 
@@ -92,11 +99,6 @@ async function displayCollection(){
     }
 }
 displayCollection(); // Displaying collection and setting arguments for parameters
-
-async function deleteFromCollection(uuid){
-    const deleteData = await deleteFromCollection(`${uuid}`);
-    deleteData
-};
 
 // Global styling for main elements used on all pages
 bodyStyle();
