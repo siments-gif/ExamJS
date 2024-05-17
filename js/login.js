@@ -34,7 +34,7 @@ loginButton.textContent = "Login";
 
 const register = document.getElementById("goToRegister")
 register.innerHTML = `
-    <p>Already have an account? <a href="../registerPage.html">Register here</a></p>
+    <p>Havent register an account yet? <a href="../registerPage.html">Register here</a></p>
 `
 
 // Appending elements to DOM with right parent/child relationship
@@ -58,7 +58,6 @@ titleStyles();
 bodyStyle();
 
 const users = await getUserID();
-window.onload = getUserID;
 
 loginButton.addEventListener("click", async function(e) {
     e.preventDefault();
