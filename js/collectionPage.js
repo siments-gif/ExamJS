@@ -87,16 +87,16 @@ async function displayCollection(){
             listElement.style.marginBottom = ".5rem"
             listElement.style.padding = "1rem"
             
-            deleteCollection.addEventListener("click", deleteItemHandler);
-
+            deleteCollection.addEventListener("click", () => {
+                cardInformation.removeChild(li); // Deleting first li child
+                localStorage.getItem("pokemonCollection"); // Update list
+                await = deleteFromCollection();
+            });
+            
             styleButtons(); // Global styling for buttons
         }); 
     } catch (error) {
         throw new Error("Something went wrong while trying to display collection", error)
     }
-}
-
-async function deleteItemHandler(){
-    await deleteFromCollection();
 }
 displayCollection(); // Displaying collection and setting arguments for parameters

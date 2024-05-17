@@ -75,6 +75,8 @@ loginButton.addEventListener("click", async function(e) {
             const existingUser = users.find(user => user.username === username && user.password === password);
             if(existingUser){
                 localStorage.setItem("existingUser", JSON.stringify(existingUser.id));
+                alert("Login sucessful. You will be taken to home page");
+                location.href = "../index.html";
                 console.log(existingUser);
                 console.log("User identification saved of existing user");
             }else {

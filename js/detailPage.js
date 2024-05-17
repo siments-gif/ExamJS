@@ -110,7 +110,12 @@ async function displayPokemonDetails() {
         titleStyles(); // Reference to a global style function
         
         saveBtn.addEventListener("click", function(){
-            saveBtnHandler(pokemon); // Refrencing our handler to work inside the card
+            const existingUser = localStorage.getItem("existingUser");
+            if(!existingUser){
+                alert("Please login before using this feature")
+            }else{
+                saveBtnHandler(pokemon); // Refrencing our handler to work inside the card  
+            }   
         });
     } catch (error) {
         throw new Error("Didn't display any pokemon details on page", error);
