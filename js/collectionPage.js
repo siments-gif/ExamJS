@@ -87,10 +87,10 @@ async function displayCollection(){
             listElement.style.marginBottom = ".5rem"
             listElement.style.padding = "1rem"
             
-            deleteCollection.addEventListener("click", () => {
+            deleteCollection.addEventListener("click", async () => {
                 cardInformation.removeChild(li); // Deleting first li child
                 localStorage.getItem("pokemonCollection"); // Update list
-                await = deleteFromCollection();
+                await deleteFromCollection();
             });
             
             styleButtons(); // Global styling for buttons
