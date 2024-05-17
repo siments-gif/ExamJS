@@ -1,6 +1,6 @@
 import { getUserID } from "./apiFetch.js";
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
-import { loginValidation, checkUser } from "./userValidation.js";
+import { loginValidation } from "./userValidation.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
@@ -57,6 +57,9 @@ styleButtons();
 titleStyles();
 bodyStyle();
 
+const users = await getUserID();
+window.onload = getUserID;
+
 loginButton.addEventListener("click", async function(e) {
     e.preventDefault();
 
@@ -69,19 +72,17 @@ loginButton.addEventListener("click", async function(e) {
             alert (validation); // Using validation file
             return;
         }else {
-            const users = await getUserID();
-            const existingUser = checkUser(users, username, password);
+            const existingUser = users.find(user => user.username === username && user.password === password);
             if(existingUser){
-                localStorage.setItem("userID", existingUser.id);
+                localStorage.setItem("existingUser", JSON.stringify(existingUser));
+                console.log(existingUser);
                 console.log("User identification saved of existing user");
             }else {
-                console.log("User is not valid")
+                alert("User does not exist, try again or register")
             }
-            
         }     
     } catch (error) {
         console.log("Could not find userData", error)
     }
 })
 
-window.onload = getUserID;

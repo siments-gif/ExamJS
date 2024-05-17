@@ -16,11 +16,6 @@ export function registerValidation(username, password, email, phone) {
     }else if(username.length < 3 || username.length > 20) {
         return("username needs to contain between 3 and 20 characters");
     }
-    
-    // Validation for email and checking exsisting users
-    if(existingUser(email)){
-        return("User with that email is already registered");
-    }
 
     // Validation for password input
     if(password.length < 8 || password.length > 15) {
@@ -30,9 +25,4 @@ export function registerValidation(username, password, email, phone) {
     }else if(password.search(/[0-9]/) < 0) {
         return("Password must have numbers");
     }
-}
-
-export async function checkUser(users, username, password){
-    const existingUser = users.find(user => user.username === username && user.password === password);
-    return existingUser;
 }

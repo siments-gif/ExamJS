@@ -60,9 +60,8 @@ async function createPokemonList(endpoint, listSize) {
                 const pokemonId = event.target.dataset.id;
                 location.href = `../detailPage.html?id=${pokemonId}`
             });
-
+            
             listItem.appendChild(button);
-
         } 
     } catch (error) {
         throw new Error ("Could not display created pokemon list", error)

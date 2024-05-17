@@ -130,7 +130,9 @@ export async function getUserID() {
     }
     const data = await res.json();
     const displayData = data.items.map((item) => ({
-        id: item._uuid
+        id: item._uuid,
+        username: item.username,
+        password: item.password
     }))
     console.log(displayData)
     return displayData; 
