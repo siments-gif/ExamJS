@@ -85,12 +85,7 @@ async function displayCollection(){
             listElement.style.marginBottom = ".5rem"
             listElement.style.padding = "1rem"
             
-            deleteCollection.addEventListener("click", async (e) => {
-                e.preventDefault();
-
-                await deleteFromCollection(listElement);
-                alert("Not there anymore")
-            });
+            deleteCollection.addEventListener("click", deleteItemHandler);
 
             styleButtons(); // Global styling for buttons
         }); 
@@ -99,6 +94,10 @@ async function displayCollection(){
     }
 }
 displayCollection(); // Displaying collection and setting arguments for parameters
+
+async function deleteItemHandler(){
+    await deleteFromCollection();
+}
 
 // Global styling for main elements used on all pages
 bodyStyle();

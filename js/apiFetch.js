@@ -78,9 +78,9 @@ export async function saveToCollection(uploadData) {
 }
 
 // Function for deleting spesific data from collection
-export async function deleteFromCollection(){
+export async function deleteFromCollection(_uuid){
     try {
-        const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/collection/${_uuid}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -90,7 +90,8 @@ export async function deleteFromCollection(){
     if(!res.ok){
         throw new Error ("Problem with finding source for deletion", res.statusText);
     }
-    console.log(`Sucessfully deleted from API`);
+    const deletedData = await res.json();
+    return deletedData;
     } catch (error) {
         throw new Error("Could not connect with API", error);
     }  
