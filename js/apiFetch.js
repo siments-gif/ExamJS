@@ -116,3 +116,22 @@ export async function registerUser(username, password, email, phone) {
         throw new Error("Couldn't connect with api", error);
     }    
 }
+
+export async function getUserID() {
+    const res = await fetch(`https://crudapi.co.uk/api/v1/user`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+        } 
+    });
+    if(!res.ok) {
+        throw new Error(`Something went wrong with fetching. check: ${res.status}`)
+    }
+    const data = await res.json();
+    const displayData = data.items.map((item) => ({
+        id: item._uuid
+    }))
+    console.log(displayData)
+    return displayData; 
+}

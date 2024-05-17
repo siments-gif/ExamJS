@@ -1,5 +1,6 @@
+import { getUserID } from "./apiFetch.js";
 import { styleButtons, titleStyles, formStyling, bodyStyle } from "./globalStyling.js";
-import { loginValidation } from "./userValidation.js";
+import { loginValidation, checkUser } from "./userValidation.js";
 
 // Creating login elements (HTML structure)
 const loginSection = document.createElement("section");
@@ -63,17 +64,24 @@ loginButton.addEventListener("click", async function(e) {
     const password = passwordInput.value.trim();
 
     try {
-        const users = JSON.parse(localStorage.getItem("users")) || []; // Getting users key from localStorage
-        const existingUser = users.find(user => user.username === username && user.password === password); // Finding similarity to validate
-        
-        const validation = loginValidation(username, password, existingUser); // Refrencing function in validation file
+        const validation = loginValidation(username, password); // Refrencing function in validation file
         if (validation) {
             alert (validation); // Using validation file
             return;
-        }
-        location.href = "../index.html"
-        localStorage.setItem("loggedIn", JSON.stringify(users))      
+        }else {
+            const users = await getUserID();
+            const existingUser = checkUser(users, username, password);
+            if(existingUser){
+                localStorage.setItem("userID", existingUser.id);
+                console.log("User identification saved of existing user");
+            }else {
+                console.log("User is not valid")
+            }
+            
+        }     
     } catch (error) {
         console.log("Could not find userData", error)
     }
 })
+
+window.onload = getUserID;

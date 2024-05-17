@@ -1,12 +1,9 @@
-export function loginValidation(username, password, existingUser) { 
+export function loginValidation(username, password) { 
     
     // Uservalidations for login function
     if(username === "" || password === "") {
         return "You need to fill in login credentials"
-    }else if(!existingUser) {
-        return "User not found, try again or register new user";
-    }
-    else {
+    }else {
         return null; // Returns null if none senarios above are valid
     }
 }
@@ -35,7 +32,7 @@ export function registerValidation(username, password, email, phone) {
     }
 }
 
-function existingUser(email) {
-    const existingUsers = JSON.parse(localStorage.getItem("users")); // Defining variable for localStorage
-    return existingUsers.some(existingUser => existingUser.email === email); // Validating if email is a part of key users in localStorage
+export async function checkUser(users, username, password){
+    const existingUser = users.find(user => user.username === username && user.password === password);
+    return existingUser;
 }
