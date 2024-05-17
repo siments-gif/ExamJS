@@ -121,9 +121,14 @@ async function displayPokemonDetails() {
         throw new Error("Didn't display any pokemon details on page", error);
     }
 }
+displayPokemonDetails(); // Puts the display function on page
+
 // Takes user to collection page
 collectionBtn.addEventListener("click", function(){
-    location.href = "../collectionPage.html";
+    const existingUser = localStorage.getItem("existingUser");
+    if(!existingUser){
+        alert("Please login before showing collection feature");
+    }else {
+      location.href = "../collectionPage.html";  
+    }
 });
-
-displayPokemonDetails(); // Puts the display function on page
