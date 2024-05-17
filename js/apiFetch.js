@@ -1,5 +1,6 @@
 const pokemonUrl = "https://pokeapi.co/api/v2"
 
+
 // Getting every pokemon from pokeAPI
 export async function fetchBaseData (endpoint) {
     try {
@@ -80,7 +81,7 @@ export async function saveToCollection(uploadData) {
 // Function for deleting spesific data from collection
 export async function deleteFromCollection(_uuid){
     try {
-        const res = await fetch(`https://crudapi.co.uk/api/v1/collection/${_uuid}`, {
+        const res = await fetch(`https://crudapi.co.uk/api/v1/collection/${data._uuid}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
@@ -119,7 +120,9 @@ export async function registerUser(username, password, email, phone) {
 }
 
 export async function getUserID() {
+    const collection = [];
     const res = await fetch(`https://crudapi.co.uk/api/v1/user`, {
+    
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -133,8 +136,25 @@ export async function getUserID() {
     const displayData = data.items.map((item) => ({
         id: item._uuid,
         username: item.username,
-        password: item.password
-    }))
+        password: item.password,
+        collection: collection
+    }));
     console.log(displayData)
     return displayData; 
+}
+
+export async function changeUserCollection(){
+    const userID = localStorage.getItem("existingUser");
+    const res = await fetch(`https://crudapi.co.uk/api/v1/user/${userID}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer U42Uxh60_bv0V7KTbbLFs18ys9Tsu7_N-NS9woLWx41GtGq8-A"
+        },
+        body: JSON.stringify({
+            collection: userID.collection
+        })
+    });
+    const data = res.json();
+    console.log(data);
 }

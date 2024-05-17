@@ -74,6 +74,8 @@ styleButtons();
 registerButton.addEventListener("click", async function(e){
     e.preventDefault(); // Preventing the default outcome of event
 
+    const collection = [];
+
     const username = usernameInput.value.trim(); // Removing whitespace of value
     const password = passwordInput.value.trim();
     const email = emailInput.value.trim();
@@ -85,10 +87,10 @@ registerButton.addEventListener("click", async function(e){
             alert(validation); // Goes through every validation made in seperate file
             return; // Returning validation
         }else {
-          await registerUser(username, password, email, phone) // Refrencing POST call
+          await registerUser(username, password, email, phone, collection) // Refrencing POST call
 
           const users = JSON.parse(localStorage.getItem("users")) || []; // Defining and getting users
-          users.push({username, password, email, phone}); // Push values into users array
+          users.push({username, password, email, phone, collection}); // Push values into users array
           localStorage.setItem("users", JSON.stringify(users)); // Set items into localStorage
 
           alert("Your user is now registered in both localStorage and server");  
