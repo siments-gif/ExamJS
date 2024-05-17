@@ -2,7 +2,7 @@ export function loginValidation(username, password) {
     
     // Uservalidations for login function
     if(username === "" || password === "") {
-        return "You need to fill in login credentials"
+        return "You need to fill in login credentials";
     }else {
         return null; // Returns null if none senarios above are valid
     }

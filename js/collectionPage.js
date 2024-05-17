@@ -3,22 +3,22 @@ import { titleStyles, styleButtons, bodyStyle } from "./globalStyling.js";
 
 // Creating page elements
 const mainTitle = document.createElement("h2")
-mainTitle.textContent = "Personal Collection";
+mainTitle.textContent = "Personal Collection"
 
 const mainStructure = document.createElement("section");
-mainStructure.id = "mainStructure";
+mainStructure.id = "mainStructure"
 
 const subTitle = document.createElement("h3");
-subTitle.textContent = "My favorite pokemons";
+subTitle.textContent = "My favorite pokemons"
 
 const cardStructure = document.createElement("div")
 cardStructure.className = "cardStructure"
 
 const cardInformation = document.createElement("ul")
-cardInformation.id = "cardInformation";
+cardInformation.id = "cardInformation"
 
 const cardButtons = document.createElement("div");
-cardButtons.id = "cardBtnContainer";
+cardButtons.id = "cardBtnContainer"
 
 const addToCollection = document.createElement("button");
 addToCollection.id = "addNewBtn"
@@ -54,7 +54,9 @@ cardStructure.style.display = "grid";
 cardStructure.style.gridTemplateColumns = "1fr, 1fr";
 cardStructure.style.justifyContent = "center";
 
-// Displaying collection from backendAPI
+bodyStyle();
+titleStyles();
+
 async function displayCollection(){
     try {
         const data = await getCollection();
@@ -73,11 +75,11 @@ async function displayCollection(){
             listElement.appendChild(changeCollection.cloneNode(true)); // Cloning button to my list element
             listElement.appendChild(deleteCollection.cloneNode(true)); // Cloning button to my list element
             
-            listElement.style.display = "flex";
-            listElement.style.gap = "7rem";
-            listElement.style.textAlign = "center";
-            listElement.style.justifyContent = "center";
-            listElement.style.alignItems = "center";
+            listElement.style.display = "flex"
+            listElement.style.gap = "7rem"
+            listElement.style.textAlign = "center"
+            listElement.style.justifyContent = "center"
+            listElement.style.alignItems = "center"
             listElement.style.backgroundColor = "#d4ebf2"
             
             listElement.style.border = "2px solid black"
@@ -93,12 +95,8 @@ async function displayCollection(){
         throw new Error("Something went wrong while trying to display collection", error)
     }
 }
-displayCollection(); // Displaying collection and setting arguments for parameters
 
 async function deleteItemHandler(){
     await deleteFromCollection();
 }
-
-// Global styling for main elements used on all pages
-bodyStyle();
-titleStyles();
+displayCollection(); // Displaying collection and setting arguments for parameters

@@ -74,15 +74,14 @@ loginButton.addEventListener("click", async function(e) {
         }else {
             const existingUser = users.find(user => user.username === username && user.password === password);
             if(existingUser){
-                localStorage.setItem("existingUser", JSON.stringify(existingUser));
+                localStorage.setItem("existingUser", JSON.stringify(existingUser.id));
                 console.log(existingUser);
                 console.log("User identification saved of existing user");
             }else {
-                alert("User does not exist, try again or register")
+                alert("User does not exist, try again or register");
             }
         }     
     } catch (error) {
-        console.log("Could not find userData", error)
+        console.log("Could not find userData", error);
     }
-})
-
+});

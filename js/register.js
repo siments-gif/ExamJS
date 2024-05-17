@@ -2,49 +2,49 @@ import { bodyStyle, titleStyles, formStyling, styleButtons } from "./globalStyli
 import { registerUser } from "./apiFetch.js";
 import { registerValidation } from "./userValidation.js";
 
-const formTitle = document.createElement("h1")
+const formTitle = document.createElement("h1");
 formTitle.textContent = "Register Form"
 
 const registerSection = document.createElement("section");
 registerSection.id = "registerSection"
 const registerForm = document.createElement("form");
-registerForm.id = "registerForm";
+registerForm.id = "registerForm"
 
 
 const usernameLabel = document.createElement("label");
-usernameLabel.textContent = "Username:";
+usernameLabel.textContent = "Username:"
 const usernameInput = document.createElement("input");
-usernameInput.id = "usernameInput";
-usernameInput.type = "text";
+usernameInput.id = "usernameInput"
+usernameInput.type = "text"
 
 const passwordLabel = document.createElement("label");
-passwordLabel.textContent = "Password:";
+passwordLabel.textContent = "Password:"
 const passwordInput = document.createElement("input");
-passwordInput.id = "passwordInput";
-passwordInput.type = "text";
+passwordInput.id = "passwordInput"
+passwordInput.type = "text"
 
 const emailLabel = document.createElement("label");
 emailLabel.textContent = "Email:"
 const emailInput = document.createElement("input");
-emailInput.id = "emailInput";
-emailInput.type = "email";
+emailInput.id = "emailInput"
+emailInput.type = "email"
 
 const phoneLabel = document.createElement("label");
 phoneLabel.textContent = "Phone:"
 const phoneInput = document.createElement("input");
-phoneInput.id = "phoneInput";
-phoneInput.type = "phone";
+phoneInput.id = "phoneInput"
+phoneInput.type = "phone"
 
-const registerButton = document.createElement("button")
-registerButton.textContent = "Register";
-registerButton.id = "registerBtn";
-registerButton.type = "submit";
+const registerButton = document.createElement("button");
+registerButton.textContent = "Register"
+registerButton.id = "registerBtn"
+registerButton.type = "submit"
 
 const redirectToLogin = document.createElement("p");
-redirectToLogin.textContent = "Already have an account? ";
+redirectToLogin.textContent = "Already have an account? "
 const redirectToLoginLink = document.createElement("a");
 redirectToLoginLink.textContent = "Go to login"
-redirectToLoginLink.href = "../login.html";
+redirectToLoginLink.href = "../login.html"
 
 document.body.appendChild(registerSection);
 registerSection.appendChild(registerForm);
@@ -74,7 +74,7 @@ styleButtons();
 registerButton.addEventListener("click", async function(e){
     e.preventDefault(); // Preventing the default outcome of event
 
-    const collection = [];
+    const collection = []; // Adding an empty array
 
     const username = usernameInput.value.trim(); // Removing whitespace of value
     const password = passwordInput.value.trim();
@@ -98,5 +98,4 @@ registerButton.addEventListener("click", async function(e){
     }catch (error) {
         console.log("Couldn't post user to API", error);
     }
-})
-
+});

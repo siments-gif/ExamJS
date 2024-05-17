@@ -1,13 +1,13 @@
 // Global styling for body elements
 export function bodyStyle() {
-    document.body.style.backgroundColor = "#c0c0c0";
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";  
+    document.body.style.backgroundColor = "#c0c0c0"
+    document.body.style.margin = "0"
+    document.body.style.padding = "0"
 }
 
 // Global styling for all button elements
 export function styleButtons () {
-    const buttons = document.querySelectorAll("button")
+    const buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
         button.style.display = "block"
         button.style.width = "fit-content"
@@ -17,7 +17,7 @@ export function styleButtons () {
 
         button.style.cursor = "pointer"
         button.style.borderWidth = ".3rem"
-    }) 
+    }); 
  }
 
  // Global styling for main title elements
@@ -28,7 +28,7 @@ export function styleButtons () {
         
         titleText = titleText.charAt(0).toUpperCase() + titleText.slice(1); // Changes first letter to uppercase of titles
         title.textContent = titleText;
-    })
+    });
  }
 
  // Global styling for all form elements
@@ -39,9 +39,9 @@ export function styleButtons () {
     formSection.style.width = "40%"
     formSection.style.margin = "0 auto"
     
-    const form = document.querySelector("form")
+    const form = document.querySelector("form");
     form.style.backgroundColor = "#618e97"
-    form.style.display = "grid";
+    form.style.display = "grid"
     form.style.gap = ".8rem"
     form.style.marginTop = "4rem"
     form.style.justifyContent = "center"
@@ -50,4 +50,3 @@ export function styleButtons () {
     form.style.border = "5px solid black"
     form.style.borderRadius = "5rem"
  }
-

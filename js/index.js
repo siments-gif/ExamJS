@@ -11,14 +11,14 @@ const pokemonListCards = document.createElement("ul");
     pokemonListCards.id = "pokemonList";
     document.body.appendChild(pokemonListCards);
 
-const container = document.createElement("div")
+const container = document.createElement("div");
     container.id = "pokemonContainer";
     container.appendChild(pokemonList);
     document.body.appendChild(container);
 
 // Creating styling to elements with DOM-manipulation
 let listStyle = document.getElementById("pokemonList");
-    listStyle.style.display = "grid";
+    listStyle.style.display = "grid"
     listStyle.style.marginRight = "3rem"
     listStyle.style.gap = "2rem"
     listStyle.style.gridTemplateColumns = "repeat(3, 1fr)"
@@ -49,23 +49,23 @@ async function createPokemonList(endpoint, listSize) {
             listItem.style.flexDirection = "column";
             listItem.style.alignItems = "center"
             listItem.style.textAlign = "center"
-            document.getElementById("images").style.display = "flex"
+            document.getElementById("images").style.display = "flex";
             titleStyles();
 
             const button = document.createElement("button");
             button.textContent = "Select Pokemon"
             button.dataset.id = id;
-            styleButtons();
+            
             button.addEventListener ("click", (event) => {
                 const pokemonId = event.target.dataset.id;
-                location.href = `../detailPage.html?id=${pokemonId}`
-            });
-            
+                location.href = `../detailPage.html?id=${pokemonId}`;
+            });  
             listItem.appendChild(button);
+            styleButtons();
         } 
-    } catch (error) {
-        throw new Error ("Could not display created pokemon list", error)
- }    
+        } catch (error) {
+        throw new Error ("Could not display created pokemon list", error);
+    }    
 }
 bodyStyle();
-createPokemonList("pokemon", 18);
+createPokemonList("pokemon", 21);

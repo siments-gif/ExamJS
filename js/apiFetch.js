@@ -1,5 +1,4 @@
-const pokemonUrl = "https://pokeapi.co/api/v2"
-
+const pokemonUrl = "https://pokeapi.co/api/v2";
 
 // Getting every pokemon from pokeAPI
 export async function fetchBaseData (endpoint) {
@@ -15,7 +14,6 @@ export async function fetchBaseData (endpoint) {
     }
 }
 
-// Fetching pokemon detail from pokeAPI
 export async function fetchPokemonDetails(pokemonId) {
     try {
         const res = await fetch(`${pokemonUrl}/pokemon/${pokemonId}`); // Fetching new response from API
@@ -30,9 +28,8 @@ export async function fetchPokemonDetails(pokemonId) {
             weight: data.weight,
             frontImage: data.sprites.front_default,
             backImage: data.sprites.back_default,
-            types: data.types.map(type => type.type.name), // Maps pokemon types
-            abilities: data.abilities.map(ability => ability.ability.name) // Maps pokemon abilities
-            // Add more specific i want from response
+            types: data.types.map(type => type.type.name),
+            abilities: data.abilities.map(ability => ability.ability.name)
         };
         return pokemonDetails;
     } catch (error) {
@@ -40,7 +37,6 @@ export async function fetchPokemonDetails(pokemonId) {
     }
 }
 
-// Function for getting collection from backendAPI
 export async function getCollection() {
     const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
         method: "GET",
@@ -57,7 +53,6 @@ export async function getCollection() {
     return data.items; // Returning item array from fetch
 }
 
-// Function for saving data to backendAPI
 export async function saveToCollection(uploadData) {
     try {
         const res = await fetch(`https://crudapi.co.uk/api/v1/collection`, {
@@ -98,7 +93,6 @@ export async function deleteFromCollection(_uuid){
     }  
 };
 
-// Function for registering user to backendAPI
 export async function registerUser(username, password, email, phone) {
     try {
         const res = await fetch("https://crudapi.co.uk/api/v1/user", {
@@ -110,7 +104,7 @@ export async function registerUser(username, password, email, phone) {
         body: JSON.stringify([{username, password, email, phone}])
     });
         if(!res.ok) {
-            throw new Error('Network error for posting user')
+            throw new Error('Network error for posting user');
         }
         const data = await res.json();
         console.log(data);
@@ -139,11 +133,11 @@ export async function getUserID() {
         password: item.password,
         collection: collection
     }));
-    console.log(displayData)
+    console.log(displayData);
     return displayData; 
 }
 
-export async function changeUserCollection(){
+export async function updateUserCollection(){
     const userID = localStorage.getItem("existingUser");
     const res = await fetch(`https://crudapi.co.uk/api/v1/user/${userID}`, {
         method: "PUT",
