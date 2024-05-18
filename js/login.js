@@ -28,9 +28,17 @@ const passwordInput = document.createElement("input");
 passwordInput.className = "passwordInput";
 passwordInput.type = "password";
 
+const buttons = document.createElement("div");
+buttons.id = "buttons"
+buttons.style.display = "flex"
+
 const loginButton = document.createElement("button");
 loginButton.id = "loginBtn";
 loginButton.textContent = "Login";
+
+const logOutButton = document.createElement("button");
+logOutButton.id = "logOutBtn"
+logOutButton.textContent = "Logout"
 
 const register = document.getElementById("goToRegister")
 register.innerHTML = `
@@ -48,7 +56,10 @@ loginForm.appendChild(userNameInput);
 loginForm.appendChild(passwordLabel);
 loginForm.appendChild(passwordInput);
 
-loginForm.appendChild(loginButton);
+loginForm.appendChild(buttons)
+
+buttons.appendChild(loginButton);
+buttons.appendChild(logOutButton);
 loginForm.appendChild(register);
 
 // Global Style functions
@@ -84,5 +95,16 @@ loginButton.addEventListener("click", async function(e) {
         }     
     } catch (error) {
         console.log("Could not find userData", error);
+    }
+});
+
+logOutButton.addEventListener("click", () => {
+    const checkUser = localStorage.getItem("existingUser")
+    if(!checkUser){
+        alert("You have to be logged in to log out");
+    }else{
+        localStorage.removeItem("existingUser");
+        alert("Sucessful logout. You will be taken to front page")
+        location.href = "../index.html";
     }
 });
